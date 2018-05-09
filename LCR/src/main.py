@@ -5,8 +5,7 @@
 
 @date: 04/03/2018
 @about: Simple script to read data from the Keysight E4980AL LCR meter using
-        PyVisa. Creates an instance of LCR class. Polls data according to
-        'config'. Plots data after data collection is complete.
+        PyVisa. 
 """
 
 import time
