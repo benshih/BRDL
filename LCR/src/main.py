@@ -5,7 +5,8 @@
 
 @date: 04/03/2018
 @about: Simple script to read data from the Keysight E4980AL LCR meter using
-        PyVisa. 
+        PyVisa. Creates an instance of LCR class. Polls data according to
+        'config'. Plots data after data collection is complete.
 """
 
 import time
@@ -68,10 +69,10 @@ if __name__ == "__main__":
         # step over 2 steps at a time to record both measurements per channel
         for j in range(0, lcr.cfg['NUM_CHANNELS'] * 2 - 1, 2):
 
-            # switch the mux to the channel of interest
+            # switch the mux to the c hannel of interest
             channelNum = math.floor(j/2)
-            mux.switch_mux(channel=inputChannels[channelNum], wait_s=0.05)
-            
+            mux.switch_mux(channel=inputChannels[channelNum], wait_s=0.0)
+
             # poll the LCR
             out1, out2, timeSec = lcr.poll()
             lcr.output[i, j] = out1
