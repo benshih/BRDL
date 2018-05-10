@@ -124,10 +124,17 @@ class LCR():
             plt.plot(self.timeOut, self.output[:, i], '*')
             plt.xlabel('Time (s)')
             plt.ylabel('')
+
             if (i % 2 == 0):
-                plt.title('R')
+                plt.title('R') # TODO: change plot labels
             else:
                 plt.title('X')
+
+        # plot all channels on one graph
+        plt.figure()
+        for i in range(0, self.numChannels * 2 - 1, 2):
+            plt.plot(self.timeOut, self.output[:,i], '+')
+            plt.xlabel('Time (s)')
         plt.show()
 
         return 0
@@ -146,6 +153,7 @@ class LCR():
         # TODO: add a more descriptive string
         txtData = np.concatenate((self.timeOut, self.output), axis=1)
         np.savetxt('sample_data', txtData, delimiter=',')
+
         return 0
 
     def shutdown(self):
@@ -155,6 +163,7 @@ class LCR():
         self.lcr.clear()
         self.lcr.close()
 
+        # clear output arrays
         self.timeOut = np.zeros((self.cfg['NUM_SAMPLES']))
         self.output = np.zeros((self.cfg['NUM_SAMPLES'], self.numChannels * 2))
 
