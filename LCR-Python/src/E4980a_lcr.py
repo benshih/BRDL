@@ -104,6 +104,7 @@ class LCR():
         @about: print an update of all data in a single line
         @param: idx index of the data in the numpy array
         """
+        print('/r', end='')
         print('%.2f' % self.timeOut[idx], end = '')
 
         # loop through all the channels and print to screen
