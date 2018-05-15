@@ -56,13 +56,31 @@ if __name__ == "__main__":
     mux = Mux(config)
 
     # switch the mux to the first channel
-    mux.switch_mux(channel=inputChannels[0], wait_s=0.5)
+    mux.switch_mux(channel=inputChannels[0], wait_s=0.0)
 
-    # digitalWrite(1)
-    # switch one channel
-    # digitalWrite(0)
+    # make pin 2 an output for reading on the o-scope
+    pin2 = mux.board.get_pin('d:2:o')
 
-    # digitalWrite(1)
-    # switch one channel
-    # and read lcr
-    # digitalWrite(0)
+    try:
+        while True:
+            # pull digital pin 2 HIGH
+            pin2.write(1)
+
+            mux.switch_mux(inputChannels[0], 0)
+            lcr.poll()
+
+            mux.switch_mux(inputChannels[1], 0)
+            lcr.poll()
+
+            mux.switch_mux(inputChannels[2], 0)
+            lcr.poll()
+
+            # pull digital pin 2 LOW
+            pin2.write(0)
+
+            # sleep
+            time.sleep(0.1)  # 200 us
+    except KeyboardInterrupt:
+        pass
+
+    mux.shutdown()

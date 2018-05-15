@@ -82,10 +82,10 @@ if __name__ == "__main__":
         lcr.print_update(i)
 
     # plot data with matplotlib
-    lcr.plot_data()
+    # lcr.plot_data()
 
     # switch the mux between three channels
-    lcr.save_to_txt()
+    # lcr.save_to_txt()
 
     # just read the lcr
     lcr.shutdown()

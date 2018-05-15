@@ -42,9 +42,9 @@ class Mux():
         self.board = ArduinoMega(cfg['ARDUINO_PORT'])
 
         # iterator thread for reading analog pins
-        self.iter = util.Iterator(self.board)
-        self.iter.start()
-        print("iterator running.")
+        # self.iter = util.Iterator(self.board)
+        # self.iter.start()
+        # print("iterator running.")
 
         # set the select pins as arduino digital pins
         self.s_pin_num = cfg['MUX_SELECT_PINS']
@@ -56,7 +56,7 @@ class Mux():
         # self.sig_pin = self.board.get_pin('d:' + str(cfg['MUX_SIG_PIN']) + ':o')
 
         # TODO: add some stuff to separate digital and analog pins
-        self.sig_pin = self.board.get_pin('a:1:i')
+        self.sig_pin = self.board.get_pin('a:0:i')
 
         print("Mux connected.")
 
@@ -83,7 +83,7 @@ class Mux():
         for i in range(0, 4):
             self.s_pins[i].write(self.muxChannel[channel][i])
 
-        print('Mux switched to channel %d' % channel)
+        # print('Mux switched to channel %d' % channel)
 
         time.sleep(wait_s) # sleep and allow connection between the multimeter and selected pin
 
@@ -110,7 +110,7 @@ class Mux():
         @brief: read the analog input pin and calculate the resistance
                 using a voltage divider
         """
-        R_IN = 1000.0
+        R_IN = 220.0
         V_IN = 5.0
         V_out = self.sig_pin.read() * V_IN # rescale it to the 5V bar
         R_out = (R_IN * V_out/V_IN) / (1.0 - (V_out/V_IN))
@@ -120,7 +120,7 @@ class Mux():
 
     def shutdown(self):
         """
-        @about: close connection to board.
+        @brief: close connection to board.
         """
         self.board.exit()
         print('Closed connection to mux.')
