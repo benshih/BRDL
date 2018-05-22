@@ -9,7 +9,7 @@ http://www.instructables.com/id/Arduino-Installing-Standard-Firmata/
 ## pyFirmata Installation ##
 Requires pyFirmata package for interfacing with the Arduino using Python.
 
-'pip install pyfirmata'
+`pip install pyfirmata`
 
 pyfirmata Github:
 https://github.com/tino/pyFirmata
