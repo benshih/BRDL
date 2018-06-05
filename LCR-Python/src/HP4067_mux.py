@@ -6,7 +6,7 @@
 @author: Jason Mayeda
 @date:   05/04/2018
 
-@brief:  Class for interfacing with the XXXX Multiplexer breakout board and
+@brief:  Class for interfacing with the HP4067 Multiplexer breakout board and
          Arduino integration using pyfirmata.
          Arduino boards require the standard firmata firmware.
          https://pypi.python.org/pypi/pyFirmata
@@ -37,7 +37,7 @@ class Mux():
                   [1, 1, 1, 1]] # channel 16
 
     def __init__(self, cfg):
-        #load the config
+        # load the config
         self.cfg = cfg
         self.board = ArduinoMega(cfg['ARDUINO_PORT'])
 
@@ -83,9 +83,7 @@ class Mux():
         for i in range(0, 4):
             self.s_pins[i].write(self.muxChannel[channel][i])
 
-        # print('Mux switched to channel %d' % channel)
-
-        time.sleep(wait_s) # sleep and allow connection between the multimeter and selected pin
+        time.sleep(wait_s)
 
         return 0
 
@@ -107,7 +105,7 @@ class Mux():
 
     def read_analog_resistance(self):
         """
-        @brief: read the analog input pin and calculate the resistance
+        @brief: (FOR DEBUGGING) read the analog input pin and calculate the resistance
                 using a voltage divider
         """
         R_IN = 220.0

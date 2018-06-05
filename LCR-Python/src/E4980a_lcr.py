@@ -81,8 +81,8 @@ class LCR():
         out = data.split(",")
 
         # scale outputs by prescaler for readibility
-        out1 = float(out[0]) #/ self.cfg['LCR1_PRESCALE']
-        out2 = float(out[1]) #/ self.cfg['LCR2_PRESCALE']
+        out1 = float(out[0])
+        out2 = float(out[1])
 
         # get current time in seconds
         timeSec = time.time() - self.startTime
@@ -97,6 +97,7 @@ class LCR():
                 ex: CpD for Capacitance in Parallel
         """
         # self.lcr.write(':FUNC:IMP:CPD')
+        # TODO: from pymeasure code "FUNCtion:IMPedance:TYPE?", "FUNCtion:IMPedance:TYPE %s"
         return 0
 
     def print_update(self, idx):
