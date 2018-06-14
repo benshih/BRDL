@@ -23,3 +23,18 @@ pyfirmata Github:
 https://github.com/tino/pyFirmata
 
 ## pyMeasure Installation ##
+Check out the quick installation guide for PyMeasure here.
+http://pymeasure.readthedocs.io/en/latest/quick_start.html
+
+Mac and Linux:
+
+`pip install pymeasure`
+
+Windows (with Conda):
+
+`conda config --add channels conda-forge`
+`conda install pymeasure`
+
+
+## Other dependencies
+Matplotlib, numpy
